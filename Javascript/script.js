@@ -16,3 +16,8 @@ function Book(title, author, number_of_pages) {
     }`;
   };
 }
+let new_book = Book(title_input, author_input, pages_input);
+
+function addBookToLibrary() {
+  library.push(new_book);
+}
