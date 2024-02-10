@@ -11,13 +11,26 @@ function Book(title, author, number_of_pages) {
   this.read = false;
 
   this.info = function () {
-    return `${this.title} by ${this.author}, ${this.number_of_pages}, ${
-      this.read ? "already read" : "Not read yet"
-    }`;
+    return `<tr> <td>${this.title}</td> <td>${this.author}</td> <td> ${
+      this.number_of_pages
+    }</td> <td> ${this.read ? "already read" : "Not read yet"}</td> </tr>`;
   };
 }
-let new_book = Book(title_input, author_input, pages_input);
+let new_book = new Book(title_input, author_input, pages_input);
 
-function addBookToLibrary() {
-  library.push(new_book);
+let book1 = new Book("Le Gouverneur de la rosee", "Jacques Roumain", "234");
+let book2 = new Book("Paris, la ville de l'amour", "Thom Cruz", "637");
+
+function addBookToLibrary(book) {
+  library.push(book);
 }
+
+addBookToLibrary(new_book);
+addBookToLibrary(book1);
+addBookToLibrary(book2);
+
+let tbody = document.getElementsByTagName("tbody")[0];
+
+library.forEach((book) => {
+  tbody.innerHTML += book.info();
+});
