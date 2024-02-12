@@ -1,8 +1,8 @@
 const library = [];
 
-// let title_input = prompt("Enter your book's title:");
-// let author_input = prompt("Enter the author name:");
-// let pages_input = prompt("Enter the pages number:");
+let title_input = prompt("Enter your book's title:");
+let author_input = prompt("Enter the author name:");
+let pages_input = prompt("Enter the pages number:");
 
 function Book(title, author, number_of_pages) {
   this.title = title;
@@ -41,11 +41,18 @@ let the_form = document.getElementsByTagName("form")[0];
 // Retrieve the new book button
 let new_book_button = document.querySelector("#new_book");
 
-// Allow the new_bbok_button to hide or show the form
+// Allow the new_book_button to hide or show the form
 new_book_button.addEventListener("click", (e) => {
+  console.log(the_form);
   if (the_form.classList.contains("hide")) {
     the_form.classList.remove("hide");
   } else {
     the_form.classList.add("hide");
   }
+});
+
+// Retrieve the submit button
+let submit_button = document.querySelector("#submit");
+submit_button.addEventListener("click", (e) => {
+  e.preventDefault();
 });
