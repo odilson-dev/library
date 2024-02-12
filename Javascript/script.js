@@ -1,10 +1,16 @@
 const library = [];
+const showButton = document.getElementById("showDialog");
+const favDialog = document.getElementById("favDialog");
+const outputBox = document.querySelector("output");
+const inputElements = favDialog.getElementsByTagName("input");
+const confirmBtn = favDialog.querySelector("#confirmBtn");
+const tbody = document.getElementsByTagName("tbody")[0];
 
-function Book(title, author, number_of_pages) {
+function Book(title, author, number_of_pages, read) {
   this.title = title;
   this.author = author;
   this.number_of_pages = number_of_pages;
-  this.read = false;
+  this.read = read === "yes" ? true : false;
 
   this.info = function () {
     return `<tr> <td>${this.title}</td> <td>${this.author}</td> <td> ${
@@ -15,19 +21,9 @@ function Book(title, author, number_of_pages) {
 
 function addBookToLibrary(book) {
   library.push(book);
-}
-
-let tbody = document.getElementsByTagName("tbody")[0];
-
-library.forEach((book) => {
+  console.log(book.info());
   tbody.innerHTML += book.info();
-});
-
-const showButton = document.getElementById("showDialog");
-const favDialog = document.getElementById("favDialog");
-const outputBox = document.querySelector("output");
-const inputElements = favDialog.getElementsByTagName("input");
-const confirmBtn = favDialog.querySelector("#confirmBtn");
+}
 
 // "Show the dialog" button opens the <dialog> modally
 showButton.addEventListener("click", () => {
@@ -40,6 +36,22 @@ favDialog.addEventListener("close", (e) => {
     favDialog.returnValue === "default"
       ? "No return value."
       : `ReturnValue: ${favDialog.returnValue}.`; // Have to check for "default" rather than empty string
+
+  let new_book_data = favDialog.returnValue
+    .split(", ")
+    .reduce((acc, currentValue) => {
+      const [key, value] = currentValue.split(": ");
+      acc[key.trim()] = isNaN(value) ? value : parseInt(value);
+      return acc;
+    }, {});
+
+  let book = new Book(
+    new_book_data.title,
+    new_book_data.author,
+    new_book_data.pages,
+    new_book_data.read
+  );
+  addBookToLibrary(book);
 });
 
 // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
