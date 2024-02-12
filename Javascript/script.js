@@ -34,3 +34,18 @@ let tbody = document.getElementsByTagName("tbody")[0];
 library.forEach((book) => {
   tbody.innerHTML += book.info();
 });
+
+// The form
+let the_form = document.getElementsByTagName("form")[0];
+
+// Retrieve the new book button
+let new_book_button = document.querySelector("#new_book");
+
+// Allow the new_bbok_button to hide or show the form
+new_book_button.addEventListener("click", (e) => {
+  if (the_form.classList.contains("hide")) {
+    the_form.classList.remove("hide");
+  } else {
+    the_form.classList.add("hide");
+  }
+});
