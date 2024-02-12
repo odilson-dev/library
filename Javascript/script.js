@@ -1,9 +1,5 @@
 const library = [];
 
-let title_input = prompt("Enter your book's title:");
-let author_input = prompt("Enter the author name:");
-let pages_input = prompt("Enter the pages number:");
-
 function Book(title, author, number_of_pages) {
   this.title = title;
   this.author = author;
@@ -16,18 +12,10 @@ function Book(title, author, number_of_pages) {
     }</td> <td> ${this.read ? "already read" : "Not read yet"}</td> </tr>`;
   };
 }
-let new_book = new Book(title_input, author_input, pages_input);
-
-let book1 = new Book("Le Gouverneur de la rosee", "Jacques Roumain", "234");
-let book2 = new Book("Paris, la ville de l'amour", "Thom Cruz", "637");
 
 function addBookToLibrary(book) {
   library.push(book);
 }
-
-addBookToLibrary(new_book);
-addBookToLibrary(book1);
-addBookToLibrary(book2);
 
 let tbody = document.getElementsByTagName("tbody")[0];
 
@@ -35,24 +23,47 @@ library.forEach((book) => {
   tbody.innerHTML += book.info();
 });
 
-// The form
-let the_form = document.getElementsByTagName("form")[0];
+const showButton = document.getElementById("showDialog");
+const favDialog = document.getElementById("favDialog");
+const outputBox = document.querySelector("output");
+const inputElements = favDialog.getElementsByTagName("input");
+const confirmBtn = favDialog.querySelector("#confirmBtn");
 
-// Retrieve the new book button
-let new_book_button = document.querySelector("#new_book");
-
-// Allow the new_book_button to hide or show the form
-new_book_button.addEventListener("click", (e) => {
-  console.log(the_form);
-  if (the_form.classList.contains("hide")) {
-    the_form.classList.remove("hide");
-  } else {
-    the_form.classList.add("hide");
-  }
+// "Show the dialog" button opens the <dialog> modally
+showButton.addEventListener("click", () => {
+  favDialog.showModal();
 });
 
-// Retrieve the submit button
-let submit_button = document.querySelector("#submit");
-submit_button.addEventListener("click", (e) => {
-  e.preventDefault();
+// "Cancel" button closes the dialog without submitting because of [form method="dialog"], triggering a close event.
+favDialog.addEventListener("close", (e) => {
+  outputBox.value =
+    favDialog.returnValue === "default"
+      ? "No return value."
+      : `ReturnValue: ${favDialog.returnValue}.`; // Have to check for "default" rather than empty string
+});
+
+// Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+confirmBtn.addEventListener("click", (event) => {
+  event.preventDefault(); // We don't want to submit this fake form
+
+  let radioValue;
+  // Iterate through radio buttons to find the checked one
+  for (const element of inputElements) {
+    if (element.type === "radio" && element.checked) {
+      radioValue = element.value;
+      break;
+    }
+  }
+
+  let data = [];
+  // Include radio button value in the data array
+  data.push(`read: ${radioValue ? radioValue : "N/A"}`);
+  // Include other input values in the data array
+  for (const element of inputElements) {
+    if (element.type !== "radio") {
+      data.push(`${element.name}: ${element.value}`);
+    }
+  }
+
+  favDialog.close(data.join(", "));
 });
