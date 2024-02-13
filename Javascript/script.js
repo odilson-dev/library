@@ -1,7 +1,6 @@
 const library = [];
 const showButton = document.getElementById("showDialog");
 const favDialog = document.getElementById("favDialog");
-const outputBox = document.querySelector("output");
 const inputElements = favDialog.getElementsByTagName("input");
 const confirmBtn = favDialog.querySelector("#confirmBtn");
 const tbody = document.getElementsByTagName("tbody")[0];
@@ -15,12 +14,11 @@ function Book(title, author, number_of_pages, read) {
   this.index = null;
 
   this.info = function () {
-    addClickEventOnRemoveButtons();
     return `<tr> <td>${this.title}</td> <td>${this.author}</td> <td> ${
       this.number_of_pages
-    }</td> <td> ${
-      this.read ? "already read" : "Not read yet"
-    }</td> <td><button class="remove" index=${
+    }</td> <td><button class="is_read" >${
+      this.read ? "Already read" : "Read"
+    }</button</td> <td><button class="remove" index=${
       this.index
     } ">Remove</button></td></tr>`;
   };
@@ -36,11 +34,23 @@ function addClickEventOnRemoveButtons() {
   });
 }
 
+function addClickEventOnReadButtons() {
+  const isReadButtons = document.querySelectorAll(".is_read");
+  isReadButtons.forEach((element) => {
+    element.addEventListener("click", (e) => {
+      element.read
+        ? ((element.read = false), (element.textContent = "Read"))
+        : ((element.read = true), (element.textContent = "Already read"));
+    });
+  });
+}
+
 function addBookToLibrary(book) {
   library.push(book);
   book.index = library.indexOf(book);
   tbody.innerHTML += book.info();
   addClickEventOnRemoveButtons();
+  addClickEventOnReadButtons();
 }
 
 // "Show the dialog" button opens the <dialog> modally
@@ -50,11 +60,6 @@ showButton.addEventListener("click", () => {
 
 // "Cancel" button closes the dialog without submitting because of [form method="dialog"], triggering a close event.
 favDialog.addEventListener("close", (e) => {
-  outputBox.value =
-    favDialog.returnValue === "default"
-      ? "No return value."
-      : `ReturnValue: ${favDialog.returnValue}.`; // Have to check for "default" rather than empty string
-
   let new_book_data = favDialog.returnValue
     .split(", ")
     .reduce((acc, currentValue) => {
