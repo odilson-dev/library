@@ -5,24 +5,42 @@ const outputBox = document.querySelector("output");
 const inputElements = favDialog.getElementsByTagName("input");
 const confirmBtn = favDialog.querySelector("#confirmBtn");
 const tbody = document.getElementsByTagName("tbody")[0];
+const myTable = document.getElementById("myTable");
 
 function Book(title, author, number_of_pages, read) {
   this.title = title;
   this.author = author;
   this.number_of_pages = number_of_pages;
   this.read = read === "yes" ? true : false;
+  this.index = null;
 
   this.info = function () {
+    addClickEventOnRemoveButtons();
     return `<tr> <td>${this.title}</td> <td>${this.author}</td> <td> ${
       this.number_of_pages
-    }</td> <td> ${this.read ? "already read" : "Not read yet"}</td> </tr>`;
+    }</td> <td> ${
+      this.read ? "already read" : "Not read yet"
+    }</td> <td><button class="remove" index=${
+      this.index
+    } ">Remove</button></td></tr>`;
   };
+}
+function addClickEventOnRemoveButtons() {
+  const removeButtons = document.querySelectorAll(".remove");
+
+  removeButtons.forEach((element) => {
+    element.addEventListener("click", (e) => {
+      myTable.deleteRow(element.parentElement.parentElement.rowIndex);
+      library.splice(element.getAttribute("index"), 1);
+    });
+  });
 }
 
 function addBookToLibrary(book) {
   library.push(book);
-  console.log(book.info());
+  book.index = library.indexOf(book);
   tbody.innerHTML += book.info();
+  addClickEventOnRemoveButtons();
 }
 
 // "Show the dialog" button opens the <dialog> modally
