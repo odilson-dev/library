@@ -1,5 +1,7 @@
 # Library Project from Odin
 
+![Screen capture](images/Screenshot%202024-02-22%20at%2016-16-42%20Library.png)
+
 ## Introduction
 
 This project extends the 'Book' example from the previous lesson to create a small Library app using HTML, CSS, and JavaScript.
