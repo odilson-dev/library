@@ -7,14 +7,16 @@
 }
 body {
   font-family: "Roboto", sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   font-style: normal;
+  color: rgb(88, 88, 88);
 }
 h1 {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 50px;
+  color: black;
 }
 table {
   width: 100%;
@@ -36,6 +38,10 @@ a {
   font-weight: 100;
   font-style: italic;
   text-decoration: none;
+}
+.is_read,
+.remove {
+  cursor: pointer;
 }
 .remove {
   background-color: rgb(237, 77, 77);
