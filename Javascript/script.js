@@ -62,27 +62,30 @@ showButton.addEventListener("click", () => {
 
 // "Cancel" button closes the dialog without submitting because of [form method="dialog"], triggering a close event.
 favDialog.addEventListener("close", (e) => {
-  let new_book_data = favDialog.returnValue
-    .split(", ")
-    .reduce((acc, currentValue) => {
-      const [key, value] = currentValue.split(": ");
-      acc[key.trim()] = isNaN(value) ? value : parseInt(value);
-      return acc;
-    }, {});
+  if (!(favDialog.returnValue == "cancel")) {
+    let new_book_data = favDialog.returnValue
+      .split(", ")
+      .reduce((acc, currentValue) => {
+        const [key, value] = currentValue.split(": ");
+        acc[key.trim()] = isNaN(value) ? value : parseInt(value);
+        return acc;
+      }, {});
 
-  let book = new Book(
-    new_book_data.title,
-    new_book_data.author,
-    new_book_data.pages,
-    new_book_data.status
-  );
-  addBookToLibrary(book);
+    let book = new Book(
+      new_book_data.title,
+      new_book_data.author,
+      new_book_data.pages,
+      new_book_data.status
+    );
+    addBookToLibrary(book);
+  }
 });
 
 // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
 confirmBtn.addEventListener("click", (event) => {
   event.preventDefault(); // We don't want to submit this fake form
   let data = [];
+  console.log(inputElements);
   for (const element of inputElements) {
     data.push(`${element.name}: ${element.value}`);
   }
