@@ -85,7 +85,6 @@ favDialog.addEventListener("close", (e) => {
 confirmBtn.addEventListener("click", (event) => {
   event.preventDefault(); // We don't want to submit this fake form
   let data = [];
-  console.log(inputElements);
   for (const element of inputElements) {
     data.push(`${element.name}: ${element.value}`);
   }
