@@ -6,14 +6,15 @@ const confirmBtn = favDialog.querySelector("#confirmBtn");
 const tbody = document.getElementsByTagName("tbody")[0];
 const myTable = document.getElementById("myTable");
 
-function Book(title, author, number_of_pages, read) {
-  this.title = title;
-  this.author = author;
-  this.number_of_pages = number_of_pages;
-  this.read = read === "yes" ? true : false;
-  this.index = null;
-
-  this.info = function () {
+class Book {
+  constructor(title, author, number_of_pages, read) {
+    this.title = title;
+    this.author = author;
+    this.number_of_pages = number_of_pages;
+    this.read = read === "yes" ? true : false;
+    this.index = null;
+  }
+  info = function () {
     return `<tr> <td>${this.title}</td> <td>${this.author}</td> <td> ${
       this.number_of_pages
     }</td> <td><button class="is_read" >${

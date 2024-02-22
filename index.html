@@ -8,48 +8,53 @@
     <link rel="stylesheet" href="Style/style.css" />
   </head>
   <body>
-    <h1>Library</h1>
-    <table id="myTable">
-      <caption>
-        The Odin Project Library
-      </caption>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Number Of pages</th>
-          <th>Read?</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <!-- A modal dialog containing a form -->
-    <dialog id="favDialog">
-      <form>
-        <label for="author">Author:</label>
-        <input required type="text" name="author" id="author" /><br />
+    <div class="content">
+      <h1>The Odin library<span class="dot">.</span></h1>
+      <table id="myTable">
+        <caption>
+          The Odin Project Library
+        </caption>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Number Of pages</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <!-- A modal dialog containing a form -->
+      <dialog id="favDialog">
+        <form>
+          <label for="author">Author:</label>
+          <input required type="text" name="author" id="author" /><br />
 
-        <label for="title">Title:</label>
-        <input required type="text" name="title" id="title" /><br />
+          <label for="title">Title:</label>
+          <input required type="text" name="title" id="title" /><br />
 
-        <label for="pages">Number of pages:</label>
-        <input required type="number" name="pages" id="pages" /><br />
+          <label for="pages">Number of pages:</label>
+          <input required type="number" name="pages" id="pages" /><br />
 
-        <label for="read">Has it been read?</label> <br />
-        <label for="yes">Yes</label>
-        <input type="radio" name="read" id="yes" value="yes" />
-        <label for="no">No</label>
-        <input type="radio" name="read" id="no" value="no" />
-        <br /><br />
-        <div>
-          <button value="cancel" formmethod="dialog">Cancel</button>
-          <button id="confirmBtn" value="default">Confirm</button>
-        </div>
-      </form>
-    </dialog>
-    <p>
-      <button id="showDialog">Show the dialog</button>
-    </p>
+          <p>
+            <label>
+              Status:
+              <select>
+                <option>Read</option>
+                <option>Not read</option>
+              </select>
+            </label>
+          </p>
+          <div>
+            <button value="cancel" formmethod="dialog">Cancel</button>
+            <button id="confirmBtn" value="default">Confirm</button>
+          </div>
+        </form>
+      </dialog>
+      <p>
+        <button id="showDialog">Show the dialog</button>
+      </p>
+    </div>
   </body>
 </html>
