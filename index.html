@@ -4,52 +4,90 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
+    <link
+      rel="shortcut icon"
+      href="svg/book-open-blank-variant.svg"
+      type="image/x-icon"
+    />
     <script src="Javascript/script.js" defer></script>
     <link rel="stylesheet" href="Style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Library</h1>
-    <table id="myTable">
-      <caption>
-        The Odin Project Library
-      </caption>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Number Of pages</th>
-          <th>Read?</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <!-- A modal dialog containing a form -->
-    <dialog id="favDialog">
-      <form>
-        <label for="author">Author:</label>
-        <input required type="text" name="author" id="author" /><br />
+    <div class="content">
+      <h1>My Odin library</h1>
+      <p>
+        This is a project for
+        <a
+          href="https:theodinproject.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          >The Odin Project</a
+        >
+        in which I have to make a library using Object Constructors and
+        LocalStorage. You can also view the
+        <a
+          href="https://github.com/odilsoncode/library"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Github repository</a
+        >
+        of this project.
+      </p>
+      <table id="myTable">
+        <caption>
+          The Odin Project Library
+        </caption>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Number of pages</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <!-- A modal dialog containing a form -->
+      <dialog id="favDialog">
+        <form>
+          <label for="author">Author:</label>
+          <input class="input" type="text" name="author" id="author" /><br />
 
-        <label for="title">Title:</label>
-        <input required type="text" name="title" id="title" /><br />
+          <label for="title">Title:</label>
+          <input class="input" type="text" name="title" id="title" /><br />
 
-        <label for="pages">Number of pages:</label>
-        <input required type="number" name="pages" id="pages" /><br />
+          <label for="pages">Number of pages:</label>
+          <input class="input" type="number" name="pages" id="pages" /><br />
 
-        <label for="read">Has it been read?</label> <br />
-        <label for="yes">Yes</label>
-        <input type="radio" name="read" id="yes" value="yes" />
-        <label for="no">No</label>
-        <input type="radio" name="read" id="no" value="no" />
-        <br /><br />
-        <div>
-          <button value="cancel" formmethod="dialog">Cancel</button>
-          <button id="confirmBtn" value="default">Confirm</button>
-        </div>
-      </form>
-    </dialog>
-    <p>
-      <button id="showDialog">Show the dialog</button>
-    </p>
+          <p>
+            <label>
+              Status:
+              <select class="input" name="status">
+                <option>Read</option>
+                <option>Not read</option>
+              </select>
+            </label>
+          </p>
+          <div>
+            <button class="btn-style" value="cancel" formmethod="dialog">
+              Cancel
+            </button>
+            <button class="btn-style" id="confirmBtn" value="default">
+              Confirm
+            </button>
+          </div>
+        </form>
+      </dialog>
+      <p>
+        <button id="showDialog">+</button>
+      </p>
+    </div>
   </body>
 </html>

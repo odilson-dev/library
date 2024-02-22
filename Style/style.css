@@ -1,12 +1,88 @@
-table {
-  border-collapse: collapse;
-  border: 1px solid black;
+@font-face {
+  font-family: Roboto;
+  src: url(../fonts/Roboto-Thin.ttf);
 }
-th,
-td {
+.content {
+  margin: 50px 150px auto 150px;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 50px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr {
+  border-bottom: 1px solid rgb(88, 88, 88);
+  height: 50px;
+}
+th {
+  font-weight: bold;
+  font-size: 15px;
+  text-align: left;
+  color: rgb(83, 83, 83);
+}
+a {
+  color: rgb(0, 121, 196);
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  text-decoration: none;
+}
+.remove {
+  background-color: rgb(237, 77, 77);
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  border: none;
+  padding: 10px 15px 10px 15px;
+  border-radius: 3px;
+}
+.is_read {
+  background-color: white;
+  text-transform: uppercase;
+  text-align: center;
+  color: black;
   border: 1px solid black;
+  padding: 10px 15px 10px 15px;
+  border-radius: 3px;
 }
 
 .hide {
   display: none;
+}
+
+#showDialog {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  font-size: large;
+  font-weight: bold;
+  border: 1px solid black;
+}
+#showDialog:hover {
+  background-color: black;
+  color: white;
+  transition: 500ms;
+}
+.btn-style {
+  color: white;
+  background-color: rgb(26, 25, 25);
+  border: 1px solid rgb(26, 25, 25);
+  padding: 5px 10px 5px 10px;
+  font-weight: bold;
+  margin: auto 3px auto 3px;
+}
+.btn-style:hover {
+  background-color: white;
+  color: rgb(26, 25, 25);
+  transition: 500ms;
 }
