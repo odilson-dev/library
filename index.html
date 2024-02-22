@@ -29,31 +29,53 @@
       <dialog id="favDialog">
         <form>
           <label for="author">Author:</label>
-          <input required type="text" name="author" id="author" /><br />
+          <input
+            required
+            class="input"
+            type="text"
+            name="author"
+            id="author"
+          /><br />
 
           <label for="title">Title:</label>
-          <input required type="text" name="title" id="title" /><br />
+          <input
+            required
+            class="input"
+            type="text"
+            name="title"
+            id="title"
+          /><br />
 
           <label for="pages">Number of pages:</label>
-          <input required type="number" name="pages" id="pages" /><br />
+          <input
+            required
+            class="input"
+            type="number"
+            name="pages"
+            id="pages"
+          /><br />
 
           <p>
             <label>
               Status:
-              <select>
+              <select required class="input" name="status">
                 <option>Read</option>
                 <option>Not read</option>
               </select>
             </label>
           </p>
           <div>
-            <button value="cancel" formmethod="dialog">Cancel</button>
-            <button id="confirmBtn" value="default">Confirm</button>
+            <button class="btn-style" value="cancel" formmethod="dialog">
+              Cancel
+            </button>
+            <button class="btn-style" id="confirmBtn" value="default">
+              Confirm
+            </button>
           </div>
         </form>
       </dialog>
       <p>
-        <button id="showDialog">Show the dialog</button>
+        <button id="showDialog">+</button>
       </p>
     </div>
   </body>
