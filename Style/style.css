@@ -3,7 +3,7 @@
   src: url(../fonts/Roboto-Thin.ttf);
 }
 .content {
-  margin: 30px 150px auto 150px;
+  margin: 50px 150px auto 150px;
 }
 body {
   font-family: "Roboto", sans-serif;
@@ -14,7 +14,7 @@ h1 {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-style: normal;
-  font-size: 40px;
+  font-size: 50px;
 }
 table {
   width: 100%;
@@ -28,12 +28,14 @@ th {
   font-weight: bold;
   font-size: 15px;
   text-align: left;
+  color: rgb(83, 83, 83);
 }
 a {
   color: rgb(0, 121, 196);
   font-family: "Roboto", sans-serif;
   font-weight: 100;
   font-style: italic;
+  text-decoration: none;
 }
 .remove {
   background-color: rgb(237, 77, 77);
