@@ -5,6 +5,7 @@ const inputElements = favDialog.getElementsByClassName("input");
 const confirmBtn = favDialog.querySelector("#confirmBtn");
 const tbody = document.getElementsByTagName("tbody")[0];
 const myTable = document.getElementById("myTable");
+const cancelBtn = document.getElementById("cancelBtn");
 
 class Book {
   constructor(title, author, number_of_pages, status) {
@@ -82,12 +83,57 @@ favDialog.addEventListener("close", (e) => {
 });
 
 // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+allInputsAreValid();
 confirmBtn.addEventListener("click", (event) => {
-  event.preventDefault(); // We don't want to submit this fake form
-  let data = [];
-  for (const element of inputElements) {
-    data.push(`${element.name}: ${element.value}`);
-  }
+  if (allInputsAreValid()) {
+    event.preventDefault();
+    let data = [];
+    for (const element of inputElements) {
+      data.push(`${element.name}: ${element.value}`);
+    }
 
-  favDialog.close(data.join(", "));
+    favDialog.close(data.join(", "));
+  }
 });
+
+cancelBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  favDialog.close("cancel");
+});
+
+function allInputsAreValid() {
+  const titleInput = document.getElementById("title");
+  const authorInput = document.getElementById("author");
+  const pageInput = document.getElementById("pages");
+
+  titleInput.addEventListener("input", () => {
+    if (titleInput.validity.valid) {
+      titleInput.setCustomValidity("");
+    } else {
+      titleInput.setCustomValidity("What is the title of the book?");
+    }
+  });
+
+  authorInput.addEventListener("input", () => {
+    if (authorInput.validity.valid) {
+      authorInput.setCustomValidity("");
+    } else {
+      authorInput.setCustomValidity("You forgot to tell the author's name");
+    }
+  });
+
+  pageInput.addEventListener("input", () => {
+    if (pageInput.validity.valid) {
+      pageInput.setCustomValidity("");
+    } else {
+      pageInput.setCustomValidity("What is the page number of the book?");
+    }
+  });
+  if (
+    titleInput.validity.valid &&
+    authorInput.validity.valid &&
+    pageInput.validity.valid
+  ) {
+    return true;
+  }
+}

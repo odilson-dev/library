@@ -92,3 +92,7 @@ a {
   color: rgb(26, 25, 25);
   transition: 500ms;
 }
+.asterix {
+  font-weight: bold;
+  color: rgb(237, 77, 77);
+}

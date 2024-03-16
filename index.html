@@ -57,14 +57,33 @@
       <!-- A modal dialog containing a form -->
       <dialog id="favDialog">
         <form>
-          <label for="author">Author:</label>
-          <input class="input" type="text" name="author" id="author" /><br />
+          <label for="title">Title<span class="asterix">*</span> </label>
+          <input
+            required
+            class="input"
+            type="text"
+            name="title"
+            id="title"
+          /><br />
+          <label for="author">Author<span class="asterix">*</span> </label>
+          <input
+            required
+            class="input"
+            type="text"
+            name="author"
+            id="author"
+          /><br />
 
-          <label for="title">Title:</label>
-          <input class="input" type="text" name="title" id="title" /><br />
-
-          <label for="pages">Number of pages:</label>
-          <input class="input" type="number" name="pages" id="pages" /><br />
+          <label for="pages"
+            >Number of pages<span class="asterix">*</span>:</label
+          >
+          <input
+            required
+            class="input"
+            type="number"
+            name="pages"
+            id="pages"
+          /><br />
 
           <p>
             <label>
@@ -76,10 +95,15 @@
             </label>
           </p>
           <div>
-            <button class="btn-style" value="cancel" formmethod="dialog">
+            <button
+              class="btn-style"
+              value="cancel"
+              id="cancelBtn"
+              formmethod="dialog"
+            >
               Cancel
             </button>
-            <button class="btn-style" id="confirmBtn" value="default">
+            <button class="btn-style" value="default" id="confirmBtn">
               Confirm
             </button>
           </div>
