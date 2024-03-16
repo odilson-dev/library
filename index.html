@@ -57,7 +57,7 @@
       <!-- A modal dialog containing a form -->
       <dialog id="favDialog">
         <form>
-          <label for="title">Title:</label>
+          <label for="title">Title<span class="asterix">*</span> </label>
           <input
             required
             class="input"
@@ -65,7 +65,7 @@
             name="title"
             id="title"
           /><br />
-          <label for="author">Author:</label>
+          <label for="author">Author<span class="asterix">*</span> </label>
           <input
             required
             class="input"
@@ -74,7 +74,9 @@
             id="author"
           /><br />
 
-          <label for="pages">Number of pages:</label>
+          <label for="pages"
+            >Number of pages<span class="asterix">*</span>:</label
+          >
           <input
             required
             class="input"
