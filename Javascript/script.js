@@ -1,64 +1,22 @@
-const library = [];
+import { addBookToLibrary } from "./add_books.js";
+import { Book } from "./book_class.js";
+import { data } from "./data.js";
+
 const showButton = document.getElementById("showDialog");
 const favDialog = document.getElementById("favDialog");
 const inputElements = favDialog.getElementsByClassName("input");
 const confirmBtn = favDialog.querySelector("#confirmBtn");
-const tbody = document.getElementsByTagName("tbody")[0];
-const myTable = document.getElementById("myTable");
+
 const cancelBtn = document.getElementById("cancelBtn");
-
-class Book {
-  constructor(title, author, number_of_pages, status) {
-    this.title = title;
-    this.author = author;
-    this.number_of_pages = number_of_pages;
-    this.status = status;
-    this.index = null;
-  }
-  info = function () {
-    return (
-      `<tr> <td>${this.title}</td> <td>${this.author}</td> <td> ${this.number_of_pages}</td> <td><button class="is_read" >` +
-      this.status +
-      `</button</td> <td><button class="remove" index=${this.index}>Remove</button></td></tr>`
-    );
-  };
-}
-function addClickEventOnRemoveButtons() {
-  const removeButtons = document.querySelectorAll(".remove");
-
-  removeButtons.forEach((element) => {
-    element.addEventListener("click", (e) => {
-      myTable.deleteRow(element.parentElement.parentElement.rowIndex);
-      library.splice(element.getAttribute("index"), 1);
-    });
-  });
-}
-
-function addClickEventOnReadButtons() {
-  const isReadButtons = document.querySelectorAll(".is_read");
-  isReadButtons.forEach((element) => {
-    if (element.textContent.length == 5) {
-      element.textContent = "Read";
-    }
-    element.addEventListener("click", (e) => {
-      element.textContent == "Read"
-        ? (element.status = element.textContent = "Not read")
-        : (element.status = element.textContent = "Read");
-    });
-  });
-}
-
-function addBookToLibrary(book) {
-  library.push(book);
-  book.index = library.indexOf(book);
-  tbody.innerHTML += book.info();
-  addClickEventOnRemoveButtons();
-  addClickEventOnReadButtons();
-}
 
 // "Show the dialog" button opens the <dialog> modally
 showButton.addEventListener("click", () => {
   favDialog.showModal();
+});
+
+data.forEach((element) => {
+  const book = new Book(element[0], element[1], element[2], element[3]);
+  addBookToLibrary(book);
 });
 
 // "Cancel" button closes the dialog without submitting because of [form method="dialog"], triggering a close event.
