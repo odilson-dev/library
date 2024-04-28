@@ -49,4 +49,4 @@ To use the Library app:
 ## Links
 
 Here is the: [Course link](https://www.theodinproject.com/lessons/javascript-library)
-Visit live site: [Library](https://odilsoncode.github.io/library/)
+Visit live site: [Library](https://odilson-dev.github.io/library/)
